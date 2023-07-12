@@ -1,0 +1,1 @@
+# Ler-QRCode_CodBarraFlutter
