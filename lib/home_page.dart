@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qrcode/home_controller.dart';
+import 'package:qrcode/ultil.dart';
 
 class Home extends StatelessWidget {
+  static String resultado = '';
   Home({super.key}) {
     //chamando minha Hme controler a partir do construtor
     Get.put(HomeController());
@@ -12,16 +14,20 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
-        "Scanner BarCode",
-      )),
+          backgroundColor: Colors.black,
+          title: const Center(
+            child: Text("Scanner BarCode",
+                style: TextStyle(
+                  color: Colors.white,
+                )),
+          )),
       body: SizedBox.expand(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text(
-            "Valor codigo de barras",
-            style: Get.theme.textTheme.headline4!.copyWith(
+            "Resultado aqui 😉",
+            style: Get.theme.textTheme.headlineSmall!.copyWith(
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 6, 58, 153)),
+                color: const Color.fromARGB(255, 6, 58, 153)),
           ),
           GetBuilder<HomeController>(
               //getbuilder reconstroi a tela sempre que a varialvel tem seu valor modificado
@@ -30,19 +36,32 @@ class Home extends StatelessWidget {
               builder: (controller) {
                 return Text(
                   controller.valorCodigoBarra, //variavel do meu controller
-                  style: Get.theme.textTheme.headline5,
+                  style: Get.theme.textTheme.headlineSmall,
                 );
               }),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           TextButton.icon(
               onPressed: () {
                 Get.find<HomeController>().scannearCode();
               },
-              icon: Icon(Icons.qr_code_scanner),
+              icon: const Icon(Icons.barcode_reader),
               label: Text("Ler codigo de barra",
-                  style: Get.theme.textTheme.headline6))
+                  style: Get.theme.textTheme.headlineSmall)),
+          TextButton.icon(
+              onPressed: () {
+                Get.find<HomeController>().scannearQrCode();
+              },
+              icon: const Icon(Icons.qr_code_scanner),
+              label:
+                  Text("Ler QrCode", style: Get.theme.textTheme.headlineSmall)),
+          TextButton.icon(
+              onPressed: () {
+                ClipBoardHelper.copy(resultado);
+              },
+              icon: const Icon(Icons.copy),
+              label: Text("Copiar", style: Get.theme.textTheme.headlineSmall)),
         ]),
       ),
     );

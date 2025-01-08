@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       //name= rota; page = pagina a ser carregada ; ferramenta do Getx
       getPages: [GetPage(name: "/", page: () => Home())],
     );
