@@ -18,7 +18,7 @@ dependencies:
   flutter_barcode_scanner: ^2.0.0 #dependecia para ler o code barra e qrcode
   #obs flutter_barcode_scanner funciona direto no android porem para IOS precisa ter suport swift no projeto
     #e não objectc ara mudar: configurações/ extenções /dart plugin vai até encontrar dart create language e verifica se esta marcado no dropdown objectc ou swift
-
+  barcode_widget: ^2.0.4
 
 
   #cupertino_icons: ^1.0.2

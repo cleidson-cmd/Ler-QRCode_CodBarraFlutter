@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:qrcode/drop.dart';
 import 'package:qrcode/home_controller.dart';
 import 'package:qrcode/ultil.dart';
 
 class Home extends StatelessWidget {
   static String resultado = '';
+  static int posicaoTipoScan = 0;
   Home({super.key}) {
     //chamando minha Hme controler a partir do construtor
     Get.put(HomeController());
@@ -14,15 +16,25 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Get.toNamed('/DataMatrixGenerator', arguments: {'data', ''});
+                },
+                icon: const Icon(
+                  Icons.qr_code,
+                  color: Colors.white,
+                ))
+          ],
           backgroundColor: Colors.black,
           title: const Center(
-            child: Text("Scanner BarCode",
+            child: Text("Scanner",
                 style: TextStyle(
-                  color: Colors.white,
-                )),
+                    color: Colors.white, fontWeight: FontWeight.bold)),
           )),
       body: SizedBox.expand(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          DropdownExample(),
           Text(
             "Resultado aqui 😉",
             style: Get.theme.textTheme.headlineSmall!.copyWith(
